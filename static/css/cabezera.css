@@ -1,0 +1,7 @@
+.cabezera {
+    background-color: black; /* Cambiar el color de la barra selecta a negro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}

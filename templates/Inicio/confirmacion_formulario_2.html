@@ -1,0 +1,13 @@
+<!-- solicitud_completada.html -->
+{% extends 'base.html' %}
+
+
+{% block title %}Solicitud de trabajo completada - K & V M{% endblock title %}
+
+{% block content %} 
+    <h1>Solicitud de trabajo completada</h1>
+    <p>Tu solicitud de trabajo ha sido procesada con éxito. Gracias por ponerte en contacto con nosotros.</p>
+
+    <!-- Agrega el enlace para redirigir a la página de inicio -->
+    <a href="{% url 'inicio' %}">Volver a la página de inicio</a>
+{% endblock content %}

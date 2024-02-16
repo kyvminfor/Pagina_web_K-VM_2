@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Póngase en contacto con nosotros - K & V M{% endblock title %}
+
+{% block content %} 
+    <h1>Póngase en contacto con nosotros</h1>
+    <h2>Por favor, llene el formulario</h2>
+
+    <form method="post" action="{% url 'contacto' %}" class="form">
+        {% csrf_token %}
+        
+        <label for="id_nombre" class="nombre contacto">Nombre:</label>
+        <input type="text" name="nombre" id="id_nombre" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su nombre aquí" required>
+
+        <label for="id_empresa" class="nombre contacto">Empresa:</label>
+        <input type="text" name="empresa" id="id_empresa" class="input" placeholder="Ingrese el nombre de su empresa aquí (opcional)">
+
+        <label for="id_telefono" class="nombre contacto">Teléfono:</label>
+        <input type="tel" name="telefono" id="id_telefono" class="input" pattern="[0-9]+" title="Debe ingresar solo números" placeholder="Ingrese su número de teléfono aquí" required>
+
+        <label for="id_email" class="nombre contacto">Email:</label>
+        <input type="email" name="email" id="id_email" class="input" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Ingrese un formato de correo electrónico válido" placeholder="Ingrese su correo electrónico aquí" required>
+
+        <label for="id_motivo_contacto" class="nombre contacto">Motivo de contacto:</label>
+        <textarea name="motivo_contacto" id="id_motivo_contacto" class="input" rows="4" placeholder="Ingrese el motivo de su contacto aquí" required></textarea>
+
+        <label for="id_forma_contacto" class="nombre contacto">Forma de contacto preferida:</label>
+        <select name="forma_contacto" id="id_forma_contacto" class="input" required>
+            <option value="telefono">Comunicarse por teléfono</option>
+            <option value="email">Comunicarse por email</option>
+        </select>
+
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock content %}

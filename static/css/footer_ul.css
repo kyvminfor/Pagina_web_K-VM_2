@@ -1,0 +1,10 @@
+footer ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+footer li {
+    display: inline;
+    margin-right: 10px; /* Ajusta el espacio entre elementos */
+}

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "kyminformatica",
+  "private_key_id": "9b552d295a6a283bb50fbe86a32c76a919d668ab",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC3sbpr572fpsnF\n9x+AMxGmfHYuzQ6gyEWycRojqsMvEvbD7N6+TS6P5hmtN7uCDRDDo6j2Buu+dMWi\nqNkG1ow2gM8eOCsCueFJNa5nlhmWM2oL8YOfE0TtIagCzVp5HqiYFxXoKVmu5BCG\ns4KdUpnyFClwW1WfE4s6GpahtKOrJrInS5HwlrT8nqEeqEkzIpQneuhq6UZejeYg\np6b7DXuiUCwpxCr90mSMDbYydqkhXZUuVGOzIanjsKe94EKGlf/rzto4vHHpHk/B\nVj5hGndsMb9A3nBnF5W3nR5wcJz33MnWR0nzmPDgKwVPnjykb1nzT6knJuqvtzos\nBrfHzMuRAgMBAAECggEAC0wBErtEVbdFv+i61XZujrOnTKlcOFubW7C/Iok71TSK\n8VGAgP67+b9f01+y0U9D5BWNIcpFq7zAiHMZW7q3PJqEgk+CfPmuUZiyooNgN0pE\nqo+JCxqohGvWNQvo1TuN3e1HhzOpz2AOZculi/l6kbZsi6Yg+HY/e6HgeHk55TUn\n6p5Wn+KBOdq98iypLtTmUxjCQRoo/QLYla+DnoKWs7HGK7t4/s+FEIV+j50qiTZ8\nA+fFaGRKtnKAzl2FABy4cDjtkamtpl1WyoeKukALmqp6PEv8hzjTJhqasBiMoTlf\nLtolOsSJumE11pfRtXHdu/8y2oZBkcRDq+PgyZIk5QKBgQDeJTvcI9KaXnlK/Ahg\nIoKEwQUg7c3LigrkrisMmpTD42Bn2BKXSaW/fQG6QPvmTdHLXGAh79+HgMC5CZLw\naBsNqG7k8KsyCfwMbmgwF+DVOqZVf3p6iSguI+cumt8lmCqGBIV4lLBHsR+YuBlq\nHdLXoFYk5tNtS4iJswB5KwUt/QKBgQDTsFzAXddbxMg3ovLcsgsMx8dZj2fabvrQ\nVgJK0fwCg4te9MZpdn+YZoAtkHmB9OrqxBgyvb8DQNStmjk3MKiXNxZlw61L1M1t\nFuVRBMCZv4wrxZmqIX6uQpP+tKgZ4BMfqJ6bvc6y1T7/KiCUIqbqG+jhHWaTdO3+\n9D6GdseeJQKBgFm6AlalpYAynp1Z9WwXJE7Iw/CL/O60gDfj3YGGwoXoxlzLWp7+\n4VLaBCOd8eERF6cjVbT/dXL+31kd89rkweCfYsNYLl3UyJig07ZxPqABw4OPLQJn\nefJBEDSz22QM9UgSdXLB4/3hHhkKa0GAcFQl8AWRsl5X/vtXcN6AMORlAoGBAJ2r\nVVoeSyJZ7jqqTrOclOhfAJcvXc3vLTbxaOGrh0WkDrGaJRI2JZEwfzXwzt/BuRtF\nFTTt6RCWQBJRtV3rCxcd+7uuRCwgAyXGkOSIYp/hcJjFo895BS7r/ekPS8mCARxq\nbkBX3lWKyVIqYXuUV7g1M35AdL9Nr1pfNxbV75ZVAoGBANYp3Pieco+rl+V0BfYp\ndoDvuYPJIUzsFq/WPGcNM18eLy5YuSHqg9wPUAURn/QtRQQGDbFLP0phf4XG1BGB\nhHfHI8PxNyRJY7NQrBcrRPyx0PDedgSEX4mlHNb9y5DA4ytZA51EJkxyZljiy++N\nPLP1WNXfBDvCIj51+mUr6HI9\n-----END PRIVATE KEY-----\n",
+  "client_email": "kyvm-979@kyminformatica.iam.gserviceaccount.com",
+  "client_id": "104150088052263498181",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kyvm-979%40kyminformatica.iam.gserviceaccount.com"
+}

@@ -1,0 +1,32 @@
+.contenedor-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Espacio entre las columnas */
+}
+
+.columna1 {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    text-align: center; /* Centra el texto */
+}
+
+.columna2 {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    text-align: center; /* Centra el texto */
+}
+
+.columna1 img,
+.columna2 img {
+    width: 5cm; /* Ancho de la imagen */
+    height: 5cm; /* Alto de la imagen */
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.info p {
+    margin: 0; /* Elimina el margen predeterminado de los párrafos */
+}

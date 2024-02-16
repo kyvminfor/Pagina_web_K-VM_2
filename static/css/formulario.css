@@ -1,0 +1,37 @@
+form {
+    background-color: rgba(173, 216, 230, 0.7); /* Fondo celeste semi transparente */
+    padding: 20px; /* Ajusta según tus necesidades */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.nombre.contacto {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000; /* Color blanco para los labels */
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+/* Estilos para pantallas grandes (computadoras) */
+@media (min-width: 1024px) {
+    .input {
+        max-width: 300px; /* Ajusta según tus necesidades */
+    }
+}
+
+/* Estilos para pantallas medianas (tablets) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .input {
+        max-width: 200px; /* Ajusta según tus necesidades */
+    }
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .input {
+        max-width: 100%; /* Ocupa el ancho completo */
+    }
+}

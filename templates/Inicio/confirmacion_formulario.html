@@ -1,0 +1,13 @@
+<!-- solicitud_completada.html -->
+{% extends 'base.html' %}
+
+
+{% block title %}Solicitud de contacto completada - K & V M{% endblock title %}
+
+{% block content %} 
+    <h1>Solicitud de contacto completada</h1>
+    <p>Tu solicitud de contacto ha sido procesada con éxito. Gracias por ponerte en contacto con nosotros.</p>
+
+    <!-- Agrega el enlace para redirigir a la página de inicio -->
+    <a href="{% url 'inicio' %}">Volver a la página de inicio</a>
+{% endblock content %}

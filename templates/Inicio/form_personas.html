@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Póngase en contacto con nosotros - K & V M{% endblock title %}
+
+{% block content %} 
+    <h2>Por favor, llene el formulario</h2>
+
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        
+        <label for="id_nombre" class="nombre contacto">Nombre:</label>
+        <input type="text" name="nombre" id="id_nombre" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su nombre aquí" required>
+
+        <label for="id_email" class="nombre contacto">Email:</label>
+        <input type="text" name="email" id="id_email" class="input" placeholder="Ingrese su correo electrónico aquí">
+
+        <label for="id_profesion" class="nombre contacto">Profesión:</label>
+        <input type="text" name="profesion" id="id_profesion" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su profesión aquí" required>
+
+        <label for="id_cv" class="nombre contacto">Adjuntar CV:</label>
+        <input type="file" name="cv" id="id_cv" accept=".pdf,.doc,.docx,.txt,.rtf">
+
+        <label for="id_linkedin_url" class="nombre contacto">URL de LinkedIn:</label>
+        <input type="url" name="linkedin_url" id="id_linkedin_url" class="input" placeholder="Ingrese su URL de LinkedIn aquí (opcional)">
+
+        <button type="submit">Enviar</button>
+    </form>
+{% endblock content %}

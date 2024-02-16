@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Bienvenido a K & V M{% endblock title %}
+
+{% block content %} 
+    <h1>Bienvenido a K & V M</h1>
+    <h2>Ingeniería Informática</h2>
+
+    <div class="contenedor-columnas">
+        <div class="columna1">
+            <img src="{% static 'images/perfil1.jpg' %}" alt="Imagen 1">
+            <div class="info">
+                <p>Karyna Castro Araya</p>
+                <p>Título profesional 1</p>
+            </div>
+        </div>
+        <div class="columna2">
+            <img src="{% static 'images/perfil2.jpg' %}" alt="Imagen 2">
+            <div class="info">
+                <p>Ana Maria</p>
+                <p>Título profesional 2</p>
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}

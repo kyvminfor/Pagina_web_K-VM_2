@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}K & V M{% endblock title %}</title>
+    {% block css %} 
+        <link rel="stylesheet" href="{% static 'css/plantilla.css' %}">
+        <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+        <link rel="stylesheet" href="{% static 'css/img_fondo.css' %}">
+        <link rel="stylesheet" href="{% static 'css/cabezera.css' %}">
+        <link rel="stylesheet" href="{% static 'css/item.css' %}">
+        <link rel="stylesheet" href="{% static 'css/perfiles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer_ul.css' %}">
+    {% endblock css %}
+</head>
+<body>
+    <div class="background-container"></div> <!-- Nuevo contenedor para la imagen de fondo -->
+
+    {% block navbar %}
+        <!-- Cabecera -->
+        <div class="cabezera">
+            <nav id="navbar">
+                <div id="navbar-logo">
+                    <a href="{% url 'inicio' %}">
+                        <img src="{% static 'images/logo_empresa_2.png' %}" alt="logo" style="width: 60px; height: 60px;">
+                    </a>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="nav-item"><a href="{% url 'productos' %}">Servicios</a></li>
+                        <li class="nav-item"><a href="{% url 'soluciones' %}">Soluciones</a></li>
+                        <li class="nav-item"><a href="{% url 'contacto' %}">Contáctate con nosotros</a></li>
+                    </ul>
+                </div>                                 
+            </nav>
+        </div>
+    {% endblock %}
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    {% block javascript %} {% endblock javascript %}
+    <script>
+        window.addEventListener("scroll", function () {
+          var header = document.querySelector(".cabezera");
+          var scrollPosition = window.scrollY;
+      
+          if (scrollPosition > 0) {
+            header.classList.add("fixed-header");
+          } else {
+            header.classList.remove("fixed-header");
+          }
+        });
+    </script>
+    <footer>
+        
+        <p>Amunategui 810, oficina 612, informaticakyvm@gmail.com</p>
+        <nav id="navbar">
+            <div>
+                <ul>
+                    <li class="nav-item"><a href="{% url 'form_personas' %}">Trabaja con nostros</a></li>
+                </ul>
+            </div>                                 
+        </nav>
+    </footer>
+</body>
+</html>
