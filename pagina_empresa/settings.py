@@ -31,7 +31,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587  # Puerto de Gmail para SMTP
 EMAIL_USE_TLS = True  # Usar TLS para cifrar la conexión
 EMAIL_HOST_USER = 'informaticakyvm@gmail.com'  # Tu dirección de correo electrónico de Gmail
-EMAIL_HOST_PASSWORD = 'uhjq bjly zgzf blmo'  # La contraseña generada en el paso anterior
+EMAIL_HOST_PASSWORD = 'zpbj acry jjnx hhmq'  # La contraseña generada en el paso anterior
 
 # Application definition
 INSTALLED_APPS = [

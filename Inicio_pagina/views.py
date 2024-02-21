@@ -13,6 +13,13 @@ from email import encoders
 import os
 import mimetypes
 import smtplib
+import base64
+from django.core.mail import EmailMessage
+import tempfile
+import shutil
+import subprocess
+
+
 
 def inicio(request):
     return render(request, 'home.html')
@@ -64,6 +71,8 @@ def form_personas(request):
             if archivo_adjunto:
                 # Envía correo para trabajadores solo si se adjunta un archivo
                 enviar_correo_trabajadores(formulario.cleaned_data, archivo_adjunto)
+                # Elimina el archivo temporal después de enviar el correo
+                eliminar_archivo_temporal(archivo_adjunto)
             else:
                 print("No se adjuntó ningún archivo.")
             return redirect('confirmacion_2')
@@ -71,49 +80,50 @@ def form_personas(request):
         formulario = FormularioPersonasForm()
     return render(request, 'Inicio/form_personas.html', {'formulario': formulario})
 
+
+
+
+def convertir_a_pdf(archivo_temporal):
+    if archivo_temporal is not None:
+        # Especifica la ruta al ejecutable de LibreOffice
+        libreoffice_path = "C:\Program Files\LibreOffice\program"
+
+        # Verifica si el archivo temporal existe antes de intentar convertirlo
+        if os.path.exists(archivo_temporal.name):
+            # Ejecuta LibreOffice para convertir el archivo a PDF
+            subprocess.run([libreoffice_path, '--headless', '--convert-to', 'pdf', archivo_temporal.name, '--outdir', os.path.dirname(archivo_temporal.name)])
+        else:
+            print("El archivo temporal no existe.")
+    else:
+        print("El archivo temporal es None. No se puede convertir a PDF.")
+
 def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
-    # Configuración del servidor SMTP de Gmail
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 587
+    subject = 'Nueva solicitud de posible trabajador'
+    message = f'Nombre: {datos_formulario["nombre"]}\n' \
+              f'Email: {datos_formulario["email"]}\n' \
+              f'Profesión: {datos_formulario["profesion"]}\n' \
+              f'Link de LinkedIn: {datos_formulario["linkedin_url"]}\n' \
+              f'CV Adjunto a continuación'
 
-    # Configura tu dirección de correo y contraseña
-    correo_emisor = "informaticakyvm@gmail.com"
-    contraseña = "uhjq bjly zgzf blmo"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['informaticakyvm@gmail.com']
 
-    # Dirección de correo destino
-    correo_destino = "informaticakyvm@gmail.com"
+    email = EmailMessage(subject, message, email_from, recipient_list)
 
-    # Construir el mensaje
-    mensaje = MIMEMultipart()
-    mensaje["From"] = correo_emisor
-    mensaje["To"] = correo_destino
-    mensaje["Subject"] = "Nueva solicitud de posible trabajador"
+    # Adjuntar el archivo recibido al correo electrónico
+    email.attach(archivo_adjunto.name, archivo_adjunto.read(), archivo_adjunto.content_type)
 
-    cuerpo_mensaje = f'Nombre: {datos_formulario["nombre"]}\n' \
-                    f'Email: {datos_formulario["email"]}\n' \
-                    f'Profesión: {datos_formulario["profesion"]}\n' \
-                    f'Link de LinkedIn: {datos_formulario["linkedin_url"]}\n' \
-                    f'CV Adjunto a continuación'
+    email.send(fail_silently=False)
 
-    mensaje.attach(MIMEText(cuerpo_mensaje, "plain"))
 
-    if archivo_adjunto:
-        adjunto = MIMEBase('application', 'octet-stream')
-        adjunto.set_payload(archivo_adjunto.read())
-        encoders.encode_base64(adjunto)
-        adjunto.add_header('Content-Disposition', 'attachment', filename=os.path.basename(archivo_adjunto.name))
-        mensaje.attach(adjunto)
 
-    # Iniciar conexión SMTP y enviar correo
-    try:
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()
-            server.login(correo_emisor, contraseña)
-            server.sendmail(correo_emisor, correo_destino, mensaje.as_string())
-        return True
-    except Exception as e:
-        print("Error al enviar el correo:", e)
-        return False
+def eliminar_archivo_temporal(archivo_adjunto):
+    if archivo_adjunto is not None:
+        try:
+            # Elimina el archivo temporal
+            os.remove(archivo_adjunto.temporary_file_path())
+        except Exception as e:
+            print("Error al eliminar el archivo temporal:", e)
 
 def confirmacion_2(request):
     return render(request, 'Inicio/confirmacion_formulario_2.html')
