@@ -18,17 +18,21 @@ from django.core.mail import EmailMessage
 import tempfile
 import shutil
 import subprocess
+from django.core.mail import EmailMessage
 
 
 
 def inicio(request):
     return render(request, 'home.html')
 
+
 def productos(request):
     return render(request, 'Inicio/productos.html')
 
+
 def soluciones(request):
     return render(request, 'Inicio/soluciones.html')
+
 
 def contacto(request):
     if request.method == 'POST':
@@ -41,6 +45,7 @@ def contacto(request):
     else:
         formulario = FormularioForm()
     return render(request, 'Inicio/contacto.html', {'formulario': formulario})
+
 
 def enviar_correo(datos_formulario):
     asunto = 'Nueva solicitud de contacto'
@@ -58,21 +63,21 @@ def enviar_correo(datos_formulario):
         fail_silently=False,
     )
 
+
 def confirmacion(request):
     return render(request, 'Inicio/confirmacion_formulario.html')
+
 
 def form_personas(request):
     if request.method == 'POST':
         formulario = FormularioPersonasForm(request.POST, request.FILES)
         if formulario.is_valid():
-            formulario.save()
+            # No es necesario guardar el formulario en la base de datos
             # Obtener el archivo adjunto del formulario con el nombre correcto del campo
             archivo_adjunto = request.FILES.get('cv')
             if archivo_adjunto:
                 # Envía correo para trabajadores solo si se adjunta un archivo
                 enviar_correo_trabajadores(formulario.cleaned_data, archivo_adjunto)
-                # Elimina el archivo temporal después de enviar el correo
-                eliminar_archivo_temporal(archivo_adjunto)
             else:
                 print("No se adjuntó ningún archivo.")
             return redirect('confirmacion_2')
@@ -80,22 +85,6 @@ def form_personas(request):
         formulario = FormularioPersonasForm()
     return render(request, 'Inicio/form_personas.html', {'formulario': formulario})
 
-
-
-
-def convertir_a_pdf(archivo_temporal):
-    if archivo_temporal is not None:
-        # Especifica la ruta al ejecutable de LibreOffice
-        libreoffice_path = "C:\Program Files\LibreOffice\program"
-
-        # Verifica si el archivo temporal existe antes de intentar convertirlo
-        if os.path.exists(archivo_temporal.name):
-            # Ejecuta LibreOffice para convertir el archivo a PDF
-            subprocess.run([libreoffice_path, '--headless', '--convert-to', 'pdf', archivo_temporal.name, '--outdir', os.path.dirname(archivo_temporal.name)])
-        else:
-            print("El archivo temporal no existe.")
-    else:
-        print("El archivo temporal es None. No se puede convertir a PDF.")
 
 def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
     subject = 'Nueva solicitud de posible trabajador'
@@ -110,20 +99,15 @@ def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
 
     email = EmailMessage(subject, message, email_from, recipient_list)
 
-    # Adjuntar el archivo recibido al correo electrónico
-    email.attach(archivo_adjunto.name, archivo_adjunto.read(), archivo_adjunto.content_type)
+    # Adjuntar el archivo recibido al correo electrónico sin leerlo
+    email.attach(archivo_adjunto.name, archivo_adjunto.file.read(), archivo_adjunto.content_type)
 
-    email.send(fail_silently=False)
+    # Envía el correo electrónico
+    try:
+        email.send()
+    except Exception as e:
+        print("Error al enviar el correo electrónico:", e)
 
-
-
-def eliminar_archivo_temporal(archivo_adjunto):
-    if archivo_adjunto is not None:
-        try:
-            # Elimina el archivo temporal
-            os.remove(archivo_adjunto.temporary_file_path())
-        except Exception as e:
-            print("Error al eliminar el archivo temporal:", e)
 
 def confirmacion_2(request):
     return render(request, 'Inicio/confirmacion_formulario_2.html')
