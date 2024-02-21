@@ -87,10 +87,30 @@ def form_personas(request):
 
 
 def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
+    # Definir las opciones de interés
+    opciones_interes = {
+        'Programacion': 'Programación',
+        'Gestion_proyectos': 'Gestión de Proyectos',
+        'Soporte_tecnico': 'Soporte técnico',
+        'Testing': 'Testing',
+        'Arquitecto_soluciones': 'Arquitecto de soluciones',
+        'DBA': 'DBA',
+        'Scrum_master': 'Scrum master',
+        'Otro': 'Otro',
+    }
+
+    # Obtener el valor seleccionado para opciones de interés
+    opcion_elegida = datos_formulario.get('opciones_interes')
+
+    # Obtener la descripción correspondiente a la opción elegida
+    interes_descripcion = opciones_interes.get(opcion_elegida, 'No especificado')
+
+    # Construir el mensaje del correo electrónico
     subject = 'Nueva solicitud de posible trabajador'
     message = f'Nombre: {datos_formulario["nombre"]}\n' \
               f'Email: {datos_formulario["email"]}\n' \
               f'Profesión: {datos_formulario["profesion"]}\n' \
+              f'Opciones de interés: {interes_descripcion}\n' \
               f'Link de LinkedIn: {datos_formulario["linkedin_url"]}\n' \
               f'CV Adjunto a continuación'
 

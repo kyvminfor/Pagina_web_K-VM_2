@@ -37,6 +37,7 @@ class FormularioPersonasForm(forms.ModelForm):
             'nombre',
             'email',
             'profesion',
+            'opciones_interes',
             'cv',
             'linkedin_url',
         ]
@@ -44,6 +45,7 @@ class FormularioPersonasForm(forms.ModelForm):
             'nombre': 'Nombre completo',
             'email': 'Correo electrónico',
             'profesion': 'Profesión',
+            'opciones_interes' : 'Opciones de interes',
             'cv': 'Curriculum Vitae',
             'linkedin_url': 'URL de LinkedIn',
         }
@@ -51,6 +53,7 @@ class FormularioPersonasForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'profesion': forms.TextInput(attrs={'class': 'form-control'}),
+            'opciones_interes': forms.TextInput(attrs={'class': 'form-control'}),
             'cv': forms.FileInput(attrs={'class': 'form-control-file'}),
             'linkedin_url': forms.URLInput(attrs={'class': 'form-control'}),
         }
