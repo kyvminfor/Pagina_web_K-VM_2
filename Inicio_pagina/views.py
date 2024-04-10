@@ -26,12 +26,7 @@ def inicio(request):
     return render(request, 'home.html')
 
 
-def productos(request):
-    return render(request, 'Inicio/productos.html')
 
-
-def soluciones(request):
-    return render(request, 'Inicio/soluciones.html')
 
 
 def contacto(request):
@@ -59,7 +54,7 @@ def enviar_correo(datos_formulario):
         asunto,
         mensaje,
         settings.EMAIL_HOST_USER,
-        ['informaticakyvm@gmail.com'],
+        ['jorgeandresalfarocastro@gmail.com'],
         fail_silently=False,
     )
 
@@ -67,16 +62,16 @@ def enviar_correo(datos_formulario):
 def confirmacion(request):
     return render(request, 'Inicio/confirmacion_formulario.html')
 
+def confirmacion_2(request):
+    return render(request, 'Inicio/confirmacion_formulario_2.html')
+
 
 def form_personas(request):
     if request.method == 'POST':
         formulario = FormularioPersonasForm(request.POST, request.FILES)
         if formulario.is_valid():
-            # No es necesario guardar el formulario en la base de datos
-            # Obtener el archivo adjunto del formulario con el nombre correcto del campo
             archivo_adjunto = request.FILES.get('cv')
             if archivo_adjunto:
-                # Envía correo para trabajadores solo si se adjunta un archivo
                 enviar_correo_trabajadores(formulario.cleaned_data, archivo_adjunto)
             else:
                 print("No se adjuntó ningún archivo.")
@@ -87,7 +82,6 @@ def form_personas(request):
 
 
 def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
-    # Definir las opciones de interés
     opciones_interes = {
         'Programacion': 'Programación',
         'Gestion_proyectos': 'Gestión de Proyectos',
@@ -98,14 +92,9 @@ def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
         'Scrum_master': 'Scrum master',
         'Otro': 'Otro',
     }
-
-    # Obtener el valor seleccionado para opciones de interés
     opcion_elegida = datos_formulario.get('opciones_interes')
-
-    # Obtener la descripción correspondiente a la opción elegida
     interes_descripcion = opciones_interes.get(opcion_elegida, 'No especificado')
-
-    # Construir el mensaje del correo electrónico
+    
     subject = 'Nueva solicitud de posible trabajador'
     message = f'Nombre: {datos_formulario["nombre"]}\n' \
               f'Email: {datos_formulario["email"]}\n' \
@@ -115,19 +104,12 @@ def enviar_correo_trabajadores(datos_formulario, archivo_adjunto):
               f'CV Adjunto a continuación'
 
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['informaticakyvm@gmail.com']
+    recipient_list = ['jorgeandresalfarocastro@gmail.com']
 
     email = EmailMessage(subject, message, email_from, recipient_list)
+    email.attach(archivo_adjunto.name, archivo_adjunto.read(), archivo_adjunto.content_type)
 
-    # Adjuntar el archivo recibido al correo electrónico sin leerlo
-    email.attach(archivo_adjunto.name, archivo_adjunto.file.read(), archivo_adjunto.content_type)
-
-    # Envía el correo electrónico
     try:
         email.send()
     except Exception as e:
         print("Error al enviar el correo electrónico:", e)
-
-
-def confirmacion_2(request):
-    return render(request, 'Inicio/confirmacion_formulario_2.html')

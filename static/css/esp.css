@@ -1,0 +1,23 @@
+.espacio_1 {
+    background-color: rgba(0, 0, 255, 0.5); /* Azul semi-transparente */
+}
+
+.espacio_2 {
+    background-color: rgba(0, 128, 0, 0.5); /* Verde semi-transparente */
+}
+
+.espacio_3 {
+    background-color: rgba(128, 128, 128, 0.5); /* Gris semi-transparente */
+}
+
+.espacio_4 {
+    background-color: rgba(255, 165, 0, 0.5); /* Naranja semi-transparente */
+}
+
+.espacio_5 {
+    background-color: rgba(173, 216, 230, 0.5); /* Celeste semi-transparente */
+}
+
+.espacio_6 {
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco semi-transparente */
+}

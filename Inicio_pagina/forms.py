@@ -53,7 +53,7 @@ class FormularioPersonasForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'profesion': forms.TextInput(attrs={'class': 'form-control'}),
-            'opciones_interes': forms.TextInput(attrs={'class': 'form-control'}),
+            'opciones_interes': forms.Select(attrs={'class': 'form-control'}),
             'cv': forms.FileInput(attrs={'class': 'form-control-file'}),
             'linkedin_url': forms.URLInput(attrs={'class': 'form-control'}),
         }

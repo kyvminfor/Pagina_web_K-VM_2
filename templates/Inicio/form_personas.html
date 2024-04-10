@@ -4,42 +4,50 @@
 
 {% block content %} 
 
-    
-      
 <h1>Póngase en contacto con nosotros</h1>
 <h2>Por favor, llene el formulario</h2>
-    <form method="post" action="{% url 'form_personas' %}" class="form">
-        {% csrf_token %}
-        
-        <label for="id_nombre" class="nombre contacto">Nombre:</label>
-        <input type="text" name="nombre" id="id_nombre" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su nombre aquí" required>
+<form method="post" action="{% url 'form_personas' %}" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if formulario.errors %}
+        <div class="errors">
+            <p>Por favor, corrija los siguientes errores:</p>
+            <ul>
+                {% for error in formulario.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 
-        <label for="id_email" class="nombre contacto">Email:</label>
-        <input type="text" name="email" id="id_email" class="input" placeholder="Ingrese su correo electrónico aquí">
+    <label for="id_nombre" class="nombre contacto">Nombre:</label>
+    <input type="text" name="nombre" id="id_nombre" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su nombre aquí" required>
 
-        <label for="id_profesion" class="nombre contacto">Profesión:</label>
-        <input type="text" name="profesion" id="id_profesion" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su profesión aquí" required>
+    <label for="id_email" class="nombre contacto">Email:</label>
+    <input type="text" name="email" id="id_email" class="input" placeholder="Ingrese su correo electrónico aquí">
 
-        <label for="id_opciones_interes" class="nombre contacto">Opciones de interés:</label>
-        <select name="opciones_interes" id="id_opciones_interes" class="input" required>
-            <option value="">Seleccione una opción</option>
-            <option value="Programacion">Programación</option>
-            <option value="Gestion_proyectos">Gestión de Proyectos</option>
-            <option value="Soporte_tecnico">Soporte técnico</option>
-            <option value="Testing">Testing</option>
-            <option value="Arquitecto_soluciones">Arquitecto de soluciones</option>
-            <option value="DBA">DBA</option>
-            <option value="Scrum_master">Scrum master</option>
-            <option value="Otro">Otro</option>
-        </select>
+    <label for="id_profesion" class="nombre contacto">Profesión:</label>
+    <input type="text" name="profesion" id="id_profesion" class="input" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Debe ingresar solo letras" placeholder="Ingrese su profesión aquí" required>
 
-        <label for="id_cv" class="nombre contacto">Adjuntar CV:</label>
-        <input type="file" name="cv" id="id_cv" accept=".pdf,.doc,.docx,.txt,.rtf">
+    <label for="id_opciones_interes" class="nombre contacto">Opciones de interés:</label>
+    <select name="opciones_interes" id="id_opciones_interes" class="input" required>
+        <option value="">Seleccione una opción</option>
+        <option value="Programacion">Programación</option>
+        <option value="Gestion_proyectos">Gestión de Proyectos</option>
+        <option value="Soporte_tecnico">Soporte técnico</option>
+        <option value="Testing">Testing</option>
+        <option value="Arquitecto_soluciones">Arquitecto de soluciones</option>
+        <option value="DBA">DBA</option>
+        <option value="Scrum_master">Scrum master</option>
+        <option value="Otro">Otro</option>
+    </select>
 
-        <label for="id_linkedin_url" class="nombre contacto">URL de LinkedIn:</label>
-        <input type="url" name="linkedin_url" id="id_linkedin_url" class="input" placeholder="Ingrese su URL de LinkedIn aquí (opcional)">
+    <label for="id_cv" class="nombre contacto">Adjuntar CV:</label>
+    <input type="file" name="cv" id="id_cv" accept=".pdf,.doc,.docx,.txt,.rtf">
 
-        <button type="submit">Enviar</button>
-    </form>
+    <label for="id_linkedin_url" class="nombre contacto">URL de LinkedIn:</label>
+    <input type="url" name="linkedin_url" id="id_linkedin_url" class="input" placeholder="Ingrese su URL de LinkedIn aquí (opcional)">
+
+    <button type="submit">Enviar</button>
+</form>
 
 {% endblock content %}

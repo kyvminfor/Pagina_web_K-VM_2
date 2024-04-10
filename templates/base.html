@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="{% static 'css/item.css' %}">
         <link rel="stylesheet" href="{% static 'css/perfiles.css' %}">
         <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/esp.css' %}">
+
+        
     {% endblock css %}
 </head>
 <body>
@@ -28,8 +31,7 @@
 
                 <div>
                     <ul>
-                        <li class="nav-item"><a href="{% url 'productos' %}">Servicios</a></li>
-                        <li class="nav-item"><a href="{% url 'soluciones' %}">Soluciones</a></li>
+                   
                         <li class="nav-item"><a href="{% url 'contacto' %}">Contáctate con nosotros</a></li>
                         <li class="nav-item"><a href="{% url 'form_personas' %}">Trabaja con nostros</a></li>
                     </ul>
